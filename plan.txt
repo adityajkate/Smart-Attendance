@@ -1,0 +1,45 @@
+### Final Project Reference
+
+**Project Status:** Functional.
+**Stack:** React Native (Expo), Supabase (Postgres), React Native Calendars.
+
+#### 1. File Structure Validation
+
+Ensure your final directory matches this structure to prevent future import errors.
+
+```text
+/app
+  /_layout.tsx          # (Auth Gatekeeper: checks Login vs Tabs)
+  /login.tsx            # (Login Logic)
+  /(tabs)
+    /_layout.tsx        # (Tab Bar Config: Dashboard, Subjects, Calendar)
+    /index.tsx          # (Dashboard: Stats & Alerts)
+    /subjects.tsx       # (Management: Add/Delete Subjects + Timetable)
+    /calendar.tsx       # (Data Entry: Filtering by Day)
+/hooks
+  /useSubjects.ts       # (CRUD: Subjects + Days Array)
+  /useAttendanceStats.ts# (Math: Recovery & Risk Calculation)
+/lib
+  /supabase.ts          # (Database Connection)
+
+```
+
+#### 2. Maintenance Commands
+
+Save these commands for future development sessions.
+
+* **Start the Project:**
+`npx expo start`
+*(Press `c` in terminal to show QR code)*
+* **Reset Cache (If strange errors occur):**
+`npx expo start -c`
+* **Build for Android/iOS (Cloud Build):**
+`npx eas build`
+*(Requires creating an Expo account)*
+
+#### 3. Data Integrity Check
+
+To maintain the "Smart Filter" logic, ensure all rows in your Supabase `subjects` table have the `days` column populated.
+
+* **Query:** `select * from subjects where days is null;`
+* **Action:** If rows return, delete them via the App UI to prevent calendar crashes.
